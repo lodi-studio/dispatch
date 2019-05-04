@@ -6,7 +6,7 @@
       <h3 class="font-weight-bold">TOR Records</h3>
     </div>
     <div class="text-right">
-      <a class="btn btn-success" href="<?php echo site_url('Home/addTorPage') ?>">Add TOR</a>
+      <a class="btn btn-success" href="<?php echo site_url('home/add_tor_page') ?>">Add TOR</a>
     </div>
   </div>
   <br>

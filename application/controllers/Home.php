@@ -10,9 +10,14 @@ class Home extends CI_Controller {
     //load database in autoload libraries
     parent::__construct();
     $this->load->model('TorRecordsModel');
+    $this->load->model("TorRecordsModel");
+    $this->load->helper('date');
+    $this->load->helper('url');
+    $this->load->library('form_validation');
+    $this->load->library('session');
   }
-  public function view($page = 'home')
-  {
+
+  public function view($page = 'home'){
     if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
     {
       // Whoops, we don't have a page for that!
@@ -20,7 +25,6 @@ class Home extends CI_Controller {
     }
 
     $data['records'] = $this->TorRecordsModel->getTorRecords();
-    $data['title'] = ucfirst($page);
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navigation', $data);
@@ -28,8 +32,7 @@ class Home extends CI_Controller {
     $this->load->view('templates/footer', $data);
   }
 
-  public function addTorPage($page = 'addtor')
-  {
+  public function add_tor_page($page = 'addtor'){
     if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
     {
       // Whoops, we don't have a page for that!
@@ -42,21 +45,31 @@ class Home extends CI_Controller {
     $this->load->view('templates/footer');
   }
 
-  public function addTorRecords() {
-    $data = array(
-      $encoder=>$_POST['encoder'],
-      $bus_no=>$_POST['bus_no'],
-      $driver=>$_POST['driver'],
-      $conductor=>$_POST['conductor'],
-      $tor_no=>$_POST['tor_no'],
-      $encode_date=>$_POST['encode_date'],
-      $encode_time=>$_POST['encode_time']
-    );
-    $this->TorRecordsModel->addTorRecords($data);
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/navigation', $data);
-    $this->load->view('pages/'.$page, $data);
-    $this->load->view('templates/footer', $data);
+  public function form_validation(){
+
+      $now1 = date("Y-d-m");
+      $now2 = date("H:i:s");
+
+      $data = array(
+        'encoder' => $this->input->post("encoder"),
+        'bus_no' => $this->input->post("bus_no"),
+        'driver' => $this->input->post("driver"),
+        'conductor' => $this->input->post("conductor"),
+        'tor_no' => $this->input->post("tor_no"),
+        'encode_date' => $now1,
+        'encode_time' => $now2,
+      );
+
+      $addtor = $this->TorRecordsModel->addTorRecords($data);
+      if($addtor == 1)
+           {
+               echo '<script>alert("You Have Successfully updated this Record!");</script>';
+               redirect('home/view', 'refresh');
+           }
+           else{
+               $this->session->set_flashdata("message","Record Not Updated!");
+               redirect('home/add_tor_page', '');
+           }
   }
 }
 ?>

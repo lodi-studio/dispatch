@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<title><?= $title;?></title>
+<title>Automated Dispatch</title>
 <base href="<?= site_url();?>">
 
 <meta charset="utf-8">
