@@ -1,56 +1,44 @@
 <!-- add TOR Records -->
-<form class="form-horizontal" action="<?php echo site_url('home/addTorRecords') ?>">
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="encoder">Encoder</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="bus_no" value="encoder1">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="bus_no">Bus No:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="bus_no">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="driver">Driver:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="driver">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="conductor">Conductor:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="conductor">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="tor_no">Tor No:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="tor_no">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="encode_date">Date:</label>
-    <div class="col-sm-10">
-      <div class='input-group date' id='encode_date'>
-        <input type='text' class="form-control" />
-        <span class="input-group-addon">
-          <span class="fa fa-calendar"></span>
-        </span>
+<br>
+<div class="container">
+<form action="<?php echo site_url('home/addTorRecords') ?>">
+  <fieldset disabled>
+    <div class="form-group row">
+      <label for="encoder" class="col-sm-2 col-form-label col-form-label-sm">Encoder</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control form-control-sm" id="encoder" placeholder="Encoder">
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="encode_time">Time:</label>
-    <div class="col-sm-10">
-      <div class='input-group date' id='encode_time'>
-        <input type='text' class="form-control" />
-        <span class="input-group-addon">
-          <span class="fa fa-time"></span>
-        </span>
-      </div>
+  </fieldset>
+  <div class="form-group row">
+    <label for="bus_no" class="col-sm-2 col-form-label col-form-label-sm">Bus Number</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control form-control-sm" id="bus_no" placeholder="Bus Number">
     </div>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <div class="form-group row">
+    <label for="driver" class="col-sm-2 col-form-label col-form-label-sm">Driver</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control form-control-sm" id="driver" placeholder="Driver">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="conductor" class="col-sm-2 col-form-label col-form-label-sm">Conductor</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control form-control-sm" id="conductor" placeholder="Conductor">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="tor_no" class="col-sm-2 col-form-label col-form-label-sm">TOR Number</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control form-control-sm" id="tor_no" placeholder="TOR Number">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="text-right col-sm-7">
+      <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      <button type="button" class="btn btn-danger btn-sm" onclick="<?php echo site_url()?>home/view">Cancel</button>
+    </div>
+  </div>
 </form>
+</div>

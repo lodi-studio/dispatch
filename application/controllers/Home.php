@@ -28,7 +28,7 @@ class Home extends CI_Controller {
     $this->load->view('templates/footer', $data);
   }
 
-  public function addTor($page = 'addtor')
+  public function addTorPage($page = 'addtor')
   {
     if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
     {
@@ -43,29 +43,20 @@ class Home extends CI_Controller {
   }
 
   public function addTorRecords() {
-    $this->load->model('TorRecordsModel');
-
-          $data = array(
-            'encoder' => $this->input->post('encoder'),
-            'bus_no' => $this->input->post('bus_no'),
-            'driver' => $this->input->post('driver'),
-            'conductor' => $this->input->post('conductor'),
-            'tor_no' => $this->input->post('tor_no'),
-            'encode_date' => $this->input->post('encode_date'),
-            'encode_time' => $this->input->post('encode_time')
-          );
-
-          $this->TorRecordsModel->addTorRecords($data);
-          $data['message'] = 'Data Inserted Successfully';
-
-          $query = $this->db->get("tor_records");
-          $data['records'] = $query->result();
-          $this->load->view('templates/header', $data);
-          $this->load->view('templates/navigation', $data);
-          $this->load->view('pages/'.$page, $data);
-          $this->load->view('templates/footer', $data);
+    $data = array(
+      $encoder=>$_POST['encoder'],
+      $bus_no=>$_POST['bus_no'],
+      $driver=>$_POST['driver'],
+      $conductor=>$_POST['conductor'],
+      $tor_no=>$_POST['tor_no'],
+      $encode_date=>$_POST['encode_date'],
+      $encode_time=>$_POST['encode_time']
+    );
+    $this->TorRecordsModel->addTorRecords($data);
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/navigation', $data);
+    $this->load->view('pages/'.$page, $data);
+    $this->load->view('templates/footer', $data);
   }
 }
-
-
 ?>
