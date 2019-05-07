@@ -10,7 +10,6 @@ class Home extends CI_Controller {
     //load database in autoload libraries
     parent::__construct();
     $this->load->model('TorRecordsModel');
-    $this->load->model("TorRecordsModel");
     $this->load->helper('date');
     $this->load->helper('url');
     $this->load->library('form_validation');
@@ -47,29 +46,36 @@ class Home extends CI_Controller {
 
   public function form_validation(){
 
-      $now1 = date("Y-d-m");
-      $now2 = date("H:i:s");
+    $now1 = date("Y-d-m");
+    $now2 = date("hh:mm:ss");
 
-      $data = array(
-        'encoder' => $this->input->post("encoder"),
-        'bus_no' => $this->input->post("bus_no"),
-        'driver' => $this->input->post("driver"),
-        'conductor' => $this->input->post("conductor"),
-        'tor_no' => $this->input->post("tor_no"),
-        'encode_date' => $now1,
-        'encode_time' => $now2,
-      );
+    $data = array(
+      'encoder' => $this->input->post("encoder"),
+      'bus_no' => $this->input->post("bus_no"),
+      'driver' => $this->input->post("driver"),
+      'conductor' => $this->input->post("conductor"),
+      'tor_no' => $this->input->post("tor_no"),
+      'encode_date' => $now1,
+      'encode_time' => $now2,
+    );
 
-      $addtor = $this->TorRecordsModel->addTorRecords($data);
-      if($addtor == 1)
-           {
-               echo '<script>alert("You Have Successfully updated this Record!");</script>';
-               redirect('home/view', 'refresh');
-           }
-           else{
-               $this->session->set_flashdata("message","Record Not Updated!");
-               redirect('home/add_tor_page', '');
-           }
+    $addtor = $this->TorRecordsModel->addTorRecords($data);
+    if($addtor == 1)
+    {
+      echo '<script>alert("You Have Successfully updated this Record!");</script>';
+      redirect('home/view', 'refresh');
+    }
+    else{
+      $this->session->set_flashdata("message","Record Not Updated!");
+      redirect('home/add_tor_page', '');
+    }
   }
+
+  function deleteTorId() {
+    $id = $this->uri->segment(3);
+    $this->TorRecordsModel->deleteTorRecords($id);
+    $this->view();
+  }
+
 }
 ?>

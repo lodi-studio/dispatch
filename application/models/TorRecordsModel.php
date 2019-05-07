@@ -17,6 +17,11 @@ class TorRecordsModel extends CI_Model{
     $this->db->insert('tor_records', $data);
   }
 
+  public function deleteTorRecords($id){
+    $this->db->where('tor_no', $id);
+    $this->db->delete('tor_records');
+  }
+
 }
 
 ?>
