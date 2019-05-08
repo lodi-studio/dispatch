@@ -7,7 +7,7 @@
         <h3 class="font-weight-bold">TOR Records</h3>
       </div>
       <div class="col text-right">
-        <a class="btn btn-success" href="<?php echo site_url('home/view/'. $page='addtor') ?>">Add TOR</a>
+        <a class="btn btn-success" href="<?php echo site_url('tor/view/'. $page='AddTor') ?>">Add TOR</a>
       </div>
     </div>
   </div>
@@ -35,9 +35,9 @@
             <td><?php echo $d->tor_no;?></td>
             <td><?php echo $d->encode_date;?></td>
             <td><?php echo $d->encode_time;?></td>
-            <td><form method="DELETE" action="<?php echo base_url() . "/home/delete_tor/" . $d->tor_no; ?>">
+            <td><form method="DELETE" action="<?php echo base_url() . "/tor/delete_tor/" . $d->tor_no; ?>">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <a class="btn btn-warning btn-sm" href="<?php echo base_url('home/edit_tor/'.$d->tor_no) ?>">
+                <a class="btn btn-warning btn-sm" href="<?php echo base_url('tor/edit_tor/'.$d->tor_no) ?>">
                   <i class="fa fa-fw fa-edit"></i>
                 </a>
 

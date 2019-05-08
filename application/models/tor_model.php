@@ -2,7 +2,7 @@
 /**
 * TOR Records Model
 */
-class TorRecordsModel extends CI_Model{
+class tor_model extends CI_Model{
 
   public function getTorRecords(){
     if(!empty($this->input->get("search"))){

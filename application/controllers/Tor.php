@@ -4,19 +4,19 @@
 * This is a Controller for Pages
 */
 
-class Home extends CI_Controller {
+class Tor extends CI_Controller {
 
   public function __construct() {
     //load database in autoload libraries
     parent::__construct();
-    $this->load->model('TorRecordsModel');
+    $this->load->model('tor_model');
     $this->load->helper('date');
     $this->load->helper('url');
     $this->load->library('form_validation');
   }
 
-  public function view($page = 'home'){
-    $data['data'] = $this->TorRecordsModel->getTorRecords();
+  public function view($page = 'TORRecords'){
+    $data['data'] = $this->tor_model->getTorRecords();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navigation', $data);
     $this->load->view('pages/'.$page, $data);
@@ -35,14 +35,14 @@ class Home extends CI_Controller {
       'encode_date' => $now1,
       'encode_time' => $now2,
     );
-    $addtor = $this->TorRecordsModel->addTorRecords($data);
+    $addtor = $this->tor_model->addTorRecords($data);
     if($addtor == 1){
       echo '<script>alert("You have successfully added this record!");</script>';
-      redirect('home/view', 'refresh');
+      redirect('tor/view', 'refresh');
     }
     else{
       $this->session->set_flashdata("message","Record not added!");
-      redirect('home/add_tor', '');
+      redirect('tor/add_tor', '');
     }
   }
 
@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 
     $this->load->helper('form');
     $this->load->library('form_validation');
-    $this->TorRecordsModel->deleteTorRecords($id);
+    $this->tor_model->deleteTorRecords($id);
     $this->view();
   }
 
@@ -66,10 +66,10 @@ class Home extends CI_Controller {
     $this->load->view('pages/updatetor', array('item'=>$data));
     $this->load->view('templates/footer');
   }
-  public function update($id){
-    $item=new TorRecordsModel;
+  public function update_tor($id){
+    $item=new tor_model;
     $item->updateTorRecords($id);
-    redirect(base_url('home'));
+    redirect(base_url('tor'));
   }
 
 }

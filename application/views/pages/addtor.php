@@ -5,7 +5,7 @@
     <div class="col">
       <h3 class="font-weight-bold">Add TOR Record</h3><br>
       <?php echo validation_errors(); ?>
-      <form method="post" action="<?php echo base_url('home/form_validation')?>">
+      <form method="post" action="<?php echo base_url('tor/form_validation')?>">
         <div class="form-group row">
           <label for="encoder" class="col-sm-2 col-form-label col-form-label-sm">Encoder:</label>
           <div class="col-sm-5">
@@ -39,7 +39,7 @@
         <div class="form-group row">
           <div class="text-right col-sm-7">
             <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-            <a href="<?php echo site_url()?>home/view" class="btn btn-danger btn-sm" type="button">Cancel</a>
+            <a href="<?php echo site_url()?>tor/view" class="btn btn-danger btn-sm" type="button">Cancel</a>
           </div>
         </div>
       </form>
