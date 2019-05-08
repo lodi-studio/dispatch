@@ -13,42 +13,19 @@ class Home extends CI_Controller {
     $this->load->helper('date');
     $this->load->helper('url');
     $this->load->library('form_validation');
-    $this->load->library('session');
   }
 
   public function view($page = 'home'){
-    if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-    {
-      // Whoops, we don't have a page for that!
-      show_404();
-    }
-
-    $data['records'] = $this->TorRecordsModel->getTorRecords();
-
+    $data['data'] = $this->TorRecordsModel->getTorRecords();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navigation', $data);
     $this->load->view('pages/'.$page, $data);
     $this->load->view('templates/footer', $data);
   }
 
-  public function add_tor_page($page = 'addtor'){
-    if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-    {
-      // Whoops, we don't have a page for that!
-      show_404();
-    }
-
-    $this->load->view('templates/header');
-    $this->load->view('templates/navigation');
-    $this->load->view('pages/'.$page);
-    $this->load->view('templates/footer');
-  }
-
   public function form_validation(){
-
     $now1 = date("Y-d-m");
     $now2 = date("hh:mm:ss");
-
     $data = array(
       'encoder' => $this->input->post("encoder"),
       'bus_no' => $this->input->post("bus_no"),
@@ -58,23 +35,41 @@ class Home extends CI_Controller {
       'encode_date' => $now1,
       'encode_time' => $now2,
     );
-
     $addtor = $this->TorRecordsModel->addTorRecords($data);
-    if($addtor == 1)
-    {
-      echo '<script>alert("You Have Successfully updated this Record!");</script>';
+    if($addtor == 1){
+      echo '<script>alert("You have successfully added this record!");</script>';
       redirect('home/view', 'refresh');
     }
     else{
-      $this->session->set_flashdata("message","Record Not Updated!");
-      redirect('home/add_tor_page', '');
+      $this->session->set_flashdata("message","Record not added!");
+      redirect('home/add_tor', '');
     }
   }
 
-  function deleteTorId() {
+  public function delete_tor() {
     $id = $this->uri->segment(3);
+    if (empty($id))
+    {
+      show_404();
+    }
+
+    $this->load->helper('form');
+    $this->load->library('form_validation');
     $this->TorRecordsModel->deleteTorRecords($id);
     $this->view();
+  }
+
+  public function edit_tor($id){
+    $data = $this->db->get_where('tor_records', array('tor_no' => $id))->row();
+    $this->load->view('templates/header');
+    $this->load->view('templates/navigation');
+    $this->load->view('pages/updatetor', array('item'=>$data));
+    $this->load->view('templates/footer');
+  }
+  public function update($id){
+    $item=new TorRecordsModel;
+    $item->updateTorRecords($id);
+    redirect(base_url('home'));
   }
 
 }

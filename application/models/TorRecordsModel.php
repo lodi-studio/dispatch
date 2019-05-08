@@ -22,6 +22,23 @@ class TorRecordsModel extends CI_Model{
     $this->db->delete('tor_records');
   }
 
+  public function updateTorRecords($id)
+  {
+    $data=array(
+      'encoder' => $this->input->post('encoder'),
+      'bus_no'=> $this->input->post('bus_no'),
+      'driver'=> $this->input->post('driver'),
+      'conductor'=> $this->input->post('conductor'),
+      'tor_no'=> $this->input->post('tor_no')
+    );
+    if($id==0){
+      return $this->db->insert('tor_records',$data);
+    }else{
+      $this->db->where('tor_no',$id);
+      return $this->db->update('tor_records',$data);
+    }
+  }
+
 }
 
 ?>

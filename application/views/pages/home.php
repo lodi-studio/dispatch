@@ -7,7 +7,7 @@
         <h3 class="font-weight-bold">TOR Records</h3>
       </div>
       <div class="col text-right">
-        <a class="btn btn-success" href="<?php echo site_url('home/add_tor_page') ?>">Add TOR</a>
+        <a class="btn btn-success" href="<?php echo site_url('home/view/'. $page='addtor') ?>">Add TOR</a>
       </div>
     </div>
   </div>
@@ -27,23 +27,23 @@
       </thead>
       <tbody>
         <?php
-        foreach ($records as $row) {?>
+        foreach ($data as $d) {?>
           <tr>
-            <td><?php echo $row->bus_no;?></td>
-            <td><?php echo $row->driver;?></td>
-            <td><?php echo $row->conductor;?></td>
-            <td><?php echo $row->tor_no;?></td>
-            <td><?php echo $row->encode_date;?></td>
-            <td><?php echo $row->encode_time;?></td>
-            <td><form method="DELETE" action="<?php echo base_url();?>">
+            <td><?php echo $d->bus_no;?></td>
+            <td><?php echo $d->driver;?></td>
+            <td><?php echo $d->conductor;?></td>
+            <td><?php echo $d->tor_no;?></td>
+            <td><?php echo $d->encode_date;?></td>
+            <td><?php echo $d->encode_time;?></td>
+            <td><form method="DELETE" action="<?php echo base_url() . "/home/delete_tor/" . $d->tor_no; ?>">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <a class="btn btn-warning btn-sm" href="#">
+                <a class="btn btn-warning btn-sm" href="<?php echo base_url('home/edit_tor/'.$d->tor_no) ?>">
                   <i class="fa fa-fw fa-edit"></i>
                 </a>
 
-                <a class="btn  btn-danger btn-sm" href="<?php echo base_url() . "/Home/deleteTorId/" . $row->tor_no; ?>">
+                <button type="submit" class="btn  btn-danger btn-sm">
                   <i class="fa fa-fw fa-trash"></i>
-                </a>
+                </button>
               </div>
             </form>
           </td>
