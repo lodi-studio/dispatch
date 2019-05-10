@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo site_url('home/view') ?>">TOR Records
+          <a class="nav-link" href="<?php echo site_url('tor/view') ?>">TOR Records
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -16,7 +16,7 @@
           <a class="nav-link" href="#">Dispatch</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Reports</a>
+          <a class="nav-link" href="<?php echo site_url('reports/index'); ?>">Reports</a>
         </li>
       </ul>
     </div>

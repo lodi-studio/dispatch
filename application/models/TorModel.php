@@ -2,9 +2,9 @@
 /**
 * TOR Records Model
 */
-class tor_model extends CI_Model{
+class TorModel extends CI_Model{
 
-  public function getTorRecords(){
+  public function GetTorRecords(){
     if(!empty($this->input->get("search"))){
       $this->db->like('bus_no', $this->input->get("search"));
       $this->db->or_like('tor_no', $this->input->get("search"));
@@ -13,16 +13,16 @@ class tor_model extends CI_Model{
     return $query->result();
   }
 
-  public function addTorRecords($data){
+  public function AddTorRecords($data){
     $this->db->insert('tor_records', $data);
   }
 
-  public function deleteTorRecords($id){
+  public function DeleteTorRecords($id){
     $this->db->where('tor_no', $id);
     $this->db->delete('tor_records');
   }
 
-  public function updateTorRecords($id)
+  public function UpdateTorRecords($id)
   {
     $data=array(
       'encoder' => $this->input->post('encoder'),

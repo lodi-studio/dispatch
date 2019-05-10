@@ -5,7 +5,7 @@
     <div class="col">
       <h3 class="font-weight-bold">Add TOR Record</h3><br>
       <?php echo validation_errors(); ?>
-      <form method="post" action="<?php echo base_url('tor/form_validation')?>">
+      <form method="post" action="<?php echo base_url('tor/add_tor')?>">
         <div class="form-group row">
           <label for="encoder" class="col-sm-2 col-form-label col-form-label-sm">Encoder:</label>
           <div class="col-sm-5">
