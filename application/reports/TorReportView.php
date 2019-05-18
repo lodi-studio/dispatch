@@ -12,6 +12,6 @@
         <?php
         Table::create(array("dataStore"=>$this->dataStore("tor_records"),"class"=>array("table"=>"table table-hover")));
         ?>
-        <button onClick="window.print()">Print this page</button>`
+        <button onClick="window.print()">Print this page</button>
     </body>
 </html>
